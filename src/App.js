@@ -1,7 +1,14 @@
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { useCallback, useEffect, useState } from "react";
+import { useColorMode } from "@chakra-ui/react";
 function App() {
+  const color = useColorMode();
+  useEffect(() => {
+    if (color.colorMode === "light") {
+      color.toggleColorMode();
+    }
+  }, []);
   const [loaded, setLoaded] = useState(false);
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
@@ -96,9 +103,9 @@ function App() {
             detectRetina: true,
           }}
         />
-        <div className="absolute top-0 left-0 h-full w-full lg:px-10 px-2 flex flex-col justify-center text-center">  
-        <h1 className="text-7xl tracking-wide">EDchain</h1>
-        <h6>Decentralised learning</h6>
+        <div className="absolute top-0 left-0 h-full w-full lg:px-10 px-2 flex flex-col justify-center text-center">
+          <h1 className="text-7xl tracking-wide">EDchain</h1>
+          <h6>Decentralised learning</h6>
         </div>
       </div>
     </div>
